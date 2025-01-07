@@ -1,4 +1,5 @@
 import numpy as np
+import cv2
 
 class Histogram:
     def __init__(self, matrix, w, h):
@@ -58,3 +59,12 @@ class Histogram:
             current_treshold += 1
 
         return result
+    
+    def apply_threshold(self, image):
+        _, binary_image = cv2.threshold(image, self.treshold, 255, cv2.THRESH_BINARY)
+
+        # Morphological opening to clean up the binary image
+        kernel = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (4, 4))
+        cleaned_image = cv2.morphologyEx(binary_image, cv2.MORPH_OPEN, kernel)
+
+        return cleaned_image
