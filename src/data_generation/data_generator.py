@@ -23,8 +23,7 @@ class DataGenerator:
         self.object_radius = object_radius
         self.max_objects = max_objects
         self.velocity_range = velocity_range
-        self.shapes = shapes
-
+        self.shapes = shapes + ("triangle", "square", "ellipse")
         self.objects = []
         self.velocities = []
         self.object_shapes = []
